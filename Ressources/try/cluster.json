@@ -1,0 +1,29 @@
+{
+  "authors": [
+    "Unknown"
+  ],
+  "category": "medoc",
+  "description": "intergration de la base bdm-it",
+  "name": "medoc",
+  "source": "Open Sources",
+  "type": "medoc",
+  "uuid": "84310ba3-fa6a-44aa-b378-b9e3271c7777",
+  "values": [
+    {
+      "meta": {
+        "UCD": "9000567",
+        "Nom": "MICAFUNGINE 50Mg",
+        "Labo": "MICAFUNGINE 50Mg",
+        "Prix TTC":"1â¬",
+        "Classe ATC":"ACT1",
+        "Code ATC":"001",
+        "synonyms": [
+          "ATC1"
+        ]
+      },
+      "uuid": "40aa797a-ee87-43a1-8755-04d040dbea28",
+      "value": "MICAFUNGINE"
+    }
+  ],
+  "version": 23
+}
