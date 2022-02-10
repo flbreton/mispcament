@@ -34,7 +34,7 @@ fi
 version=`echo $dbfile | cut -d_ -f3 | sed 's/^0*//'`
 
 # conversion du fichier dbf en json pour le cluster
-dbview $dbfile | iconv -f ISO885915 -t UTF8 | awk -v vers=$version -f $convertfile > $clusterdir/$jsonfile
+dbview -b $dbfile | cut -d: -f1,7,3,11,38,39| sed 's/   *//g'|sort |uniq | iconv -f ISO885915 -t UTF8 | awk -v vers=$version -f $convertfile > $clusterdir/$jsonfile
 if [ $? -eq 0 ] ; then 
 	echo fichier $clusterdir/$jsonfile genere
 else
@@ -52,4 +52,9 @@ echo '{
   "uuid": "84310ba3-fa6a-44aa-b378-b9e3271c7777",
   "version": 1
 }'>$galaxiedir/$jsonfile
-
+if [ $? -eq 0 ] ; then 
+	echo fichier $galaxiedir/$jsonfile genere
+else
+	echo la conversion vers $galaxiedir/$jsonfile a echoue
+	exit 3
+fi

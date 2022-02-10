@@ -4,18 +4,19 @@ BEGIN{
 	FS=":";
 	print "{";
 	print "  \"authors\": [";
-	print "    \"Unknown\"";
+	print "    \"mispcament\"";
 	print "  ],";
 	print "  \"category\": \"med-bdm-it\",";
 	print "  \"description\": \"intergration de la base bdm-it\",";
 	print "  \"name\": \"med-bdm-it\",";
-	print "  \"source\": \"Open Sources\",";
+	print "  \"source\": \"ameli.fr/CNAM\",";
 	print "  \"type\": \"medicament\",";
 	print "  \"uuid\": \"84310ba3-fa6a-44aa-b378-b9e3271c7777\",";
 	print "  \"values\": [";
 	first=1;
 }
-$1 ~ /^Code ucd/ {
+{
+	# stucuture de debut
 	if(first==1){
 		first=0;
 	}else{
@@ -24,36 +25,25 @@ $1 ~ /^Code ucd/ {
 
 	print "    {";
 	print "      \"meta\": {";
-	sub(" ","",$2);	
-	printf("        \"UCD\": \"%s\",\n",$2);
-	ucd=$2;
-}
-$1 ~ /^Nom court/ {
-	sub(" ","",$2);
+	# champ UCD : 1
+	printf("        \"UCD\": \"%s\",\n",$1);
+	# champ Nom : 2
 	printf("        \"Nom\": \"%s\",\n",$2);
-	nom=$2;
-}
-$1 ~ /^Labo exp/ {
-	sub(" ","",$2);
-	printf("        \"Labo exp\": \"%s\",\n",$2);
-}
-$1 ~ /^Prix ttc/ {
-	sub(" ","",$2);
-	printf("        \"Prix ttc\": \"%s\",\n",$2);
-}
-$1 ~ /^Cod atc/ {
-	sub(" ","",$2);
-	printf("        \"Code ATC\": \"%s\",\n",$2);
-}
-$1 ~ /^Classe atc/ {
-	sub(" ","",$2);
-	printf("        \"Classe ATC\": \"%s\",\n",$2);
+	# champ labo : 3
+	printf("        \"Labo exp\": \"%s\",\n",$3);
+	# champ prix : 4
+	printf("        \"Prix ttc\": \"%s\",\n",$4);
+	# champ code atc : 5
+	printf("        \"Code ATC\": \"%s\",\n",$6);
+	# champ classe atc : 6
+	printf("        \"Classe ATC\": \"%s\",\n",$5);
+	# struture de fin
 	print "        \"synonyms\": [";
-	printf("          \"%s\"\n",nom);
+	printf("          \"%s\"\n",$2);
 	print "        ]";
 	print "	      },";
-        printf("      \"uuid\": \"40aa797a-ee87-43a1-8755-04d04%s\",\n",ucd);
-        printf("      \"value\": \"%s\"\n",ucd);
+        printf("      \"uuid\": \"40aa797a-ee87-43a1-8755-04d04%s\",\n",$1);
+        printf("      \"value\": \"%s\"\n",$1);
         printf("    }");
 }
 END{
