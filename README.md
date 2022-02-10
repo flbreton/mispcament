@@ -12,10 +12,11 @@ inconvenient : <BR>
 
 [Notice expliquant la strucuture du fichier](http://www.codage.ext.cnamts.fr/f_mediam/fo/bdm_it/lisez_moi.pdf)
 
-## premier convertisseur avec awk sous la forme :<BR>
-dbview ucd_total_XXXXX.dbf | awk -f convert.awk > ucd_total_XXXXX.json <BR>
+## premier script écrit :<BR>
+il utilise dbview pour lire le dbf<BR>
 Afin d'assurer la continuité de l'uid nous mettant l'UCD dans les 7 dernier caractère <BR>
-NB : a réécrire en python
+La version du cluster et la version de la base <BR>
+Le script va récupérer la base sur le site d'amelie et créer les deux json pour misp <BR>
 
 ## Base alternative :<BR>
 - Thesorimed : base à priorie gratuite de médicament reste à voir si elle est libre de téléchargement<BR>

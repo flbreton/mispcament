@@ -6,15 +6,22 @@ BEGIN{
 	print "  \"authors\": [";
 	print "    \"Unknown\"";
 	print "  ],";
-	print "  \"category\": \"medoc\",";
+	print "  \"category\": \"med-bdm-it\",";
 	print "  \"description\": \"intergration de la base bdm-it\",";
-	print "  \"name\": \"medoc\",";
+	print "  \"name\": \"med-bdm-it\",";
 	print "  \"source\": \"Open Sources\",";
-	print "  \"type\": \"medoc\",";
+	print "  \"type\": \"medicament\",";
 	print "  \"uuid\": \"84310ba3-fa6a-44aa-b378-b9e3271c7777\",";
 	print "  \"values\": [";
+	first=1;
 }
 $1 ~ /^Code ucd/ {
+	if(first==1){
+		first=0;
+	}else{
+		printf(",\n");
+	}
+
 	print "    {";
 	print "      \"meta\": {";
 	sub(" ","",$2);	
@@ -47,10 +54,11 @@ $1 ~ /^Classe atc/ {
 	print "	      },";
         printf("      \"uuid\": \"40aa797a-ee87-43a1-8755-04d04%s\",\n",ucd);
         printf("      \"value\": \"%s\"\n",ucd);
-        print "    },";
+        printf("    }");
 }
 END{
+	printf("\n");
 	print "  ],";
-	print "  \"version\": 23";
+	printf("  \"version\": %s\n",vers);
 	print "}";
 }
