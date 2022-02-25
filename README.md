@@ -29,6 +29,6 @@ Le script va récupérer la base sur le site d'amelie et créer les deux __json_
 - Thesorimed : base à priorie gratuite de médicament, reste à voir si elle est libre de téléchargement<BR>
 - [Base de donnée publique des médicaments](https://base-donnees-publique.medicaments.gouv.fr/telechargement.php) :<BR>
 -- mais pas d'information tarifaire<BR>
--- elle utilise comme __ID__ le __CIS__ et le __CIP__ mais ne contient pas l'__UCD__ qui sert de pivot dans la base de médicament "_*bdm_it*_"<BR>
+-- elle utilise comme __ID__ le __CIS__ et le __CIP__ mais ne contient pas l'__UCD__ qui sert de pivot dans la base de médicament "__*bdm_it*__"<BR>
 -- [description du modele de donnée](https://base-donnees-publique.medicaments.gouv.fr/docs/Contenu_et_format_des_fichiers_telechargeables_dans_la_BDM_v1.pdf)
 
