@@ -1,7 +1,7 @@
 /\ _French project base on national medical reference_
 
 # mispcament
-L'objectif du projet et de proposer une source d'information structurée sur les médicaments en s'appuyant sur des sources publiques en accès libre.<BR>
+L'objectif du projet est de proposer une source d'information structurée sur les médicaments en s'appuyant sur des sources publiques en accès libre.<BR>
 La source utilisée est la base de médicament fournie par la CPAM dans le cadre de la rétrocession de médicament par les établissements de santé :<BR>
 http://www.codage.ext.cnamts.fr/codif/bdm_it/index_tele_ucd.php
 
