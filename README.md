@@ -27,8 +27,8 @@ Le script va récupérer la base sur le site d'amelie et créer les deux json po
 
 ## Base alternative :<BR>
 - Thesorimed : base à priorie gratuite de médicament, reste à voir si elle est libre de téléchargement<BR>
-- [Base de données publique des médicaments](https://base-donnees-publique.medicaments.gouv.fr/telechargement.php) :<BR>
+- [Base de donnée publique des médicaments](https://base-donnees-publique.medicaments.gouv.fr/telechargement.php) :<BR>
 -- mais pas d'information tarifaire<BR>
--- elle utilise comme ID les CIS et le CIP mais ne contient pas l'UCD se qui pose un problème pour pivoter avec la source de médicament "bdm_it"<BR>
+-- elle utilise comme ID le CIS et le CIP mais ne contient pas l'UCD qui sert de pivot avec la source de médicament "bdm_it"<BR>
 -- [description du modele de donnée](https://base-donnees-publique.medicaments.gouv.fr/docs/Contenu_et_format_des_fichiers_telechargeables_dans_la_BDM_v1.pdf)
 
