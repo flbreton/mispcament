@@ -16,11 +16,11 @@ inconvenient : <BR>
 
 # Utilisation
 Le script est a lancer depuis la VM hebergeant MISP<BR>
-Les constantes en début de script peuvent être corriger si jamais les dossiers Json ne sont pas localisés aux emplacements standards<BR>
+Les constantes en début de script peuvent être corrigées si jamais les dossiers Json ne sont pas localisés aux emplacements standards<BR>
 
   
 ## Remarques:<BR>
-Le script utilise dbview pour lire le dbf<BR>
+Le script utilise __dbview__ pour lire le __dbf__<BR>
 Afin d'assurer la continuité de l'UID, les 7 derniers caractères sont composés avec l'UCD<BR>
 La version de la base est mise à jour hebdomadairement, c'est pourquoi le script utilise cette information pour la version du cluster<BR>
 Le script va récupérer la base sur le site d'amelie et créer les deux json pour misp <BR>
