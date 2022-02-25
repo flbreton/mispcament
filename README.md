@@ -16,7 +16,7 @@ inconvenient : <BR>
 
 # Utilisation
 Le script est a lancer depuis la __VM__ hébergeant __MISP__<BR>
-Les constantes en début de script peuvent être corrigées si jamais les dossiers Json ne sont pas localisés aux emplacements standards<BR>
+Les constantes en début de script peuvent être corrigées si jamais les dossiers __Json__ ne sont pas localisés aux emplacements standards<BR>
 
   
 ## Remarques:<BR>
@@ -29,6 +29,6 @@ Le script va récupérer la base sur le site d'amelie et créer les deux __json_
 - Thesorimed : base à priorie gratuite de médicament, reste à voir si elle est libre de téléchargement<BR>
 - [Base de donnée publique des médicaments](https://base-donnees-publique.medicaments.gouv.fr/telechargement.php) :<BR>
 -- mais pas d'information tarifaire<BR>
--- elle utilise comme __ID__ le __CIS__ et le __CIP__ mais ne contient pas l'__UCD__ qui sert de pivot avec la source de médicament "_bdm_it_"<BR>
+-- elle utilise comme __ID__ le __CIS__ et le __CIP__ mais ne contient pas l'__UCD__ qui sert de pivot dans la base de médicament "_*bdm_it*_"<BR>
 -- [description du modele de donnée](https://base-donnees-publique.medicaments.gouv.fr/docs/Contenu_et_format_des_fichiers_telechargeables_dans_la_BDM_v1.pdf)
 
