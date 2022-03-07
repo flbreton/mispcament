@@ -2,6 +2,8 @@
 # definition des variables
 clusterdir=/var/www/MISP/app/files/misp-galaxy/clusters
 galaxiedir=/var/www/MISP/app/files/misp-galaxy/galaxies
+clusterschema=/var/www/MISP/app/files/misp-galaxy/schema_clusters.json
+galaxieschema=/var/www/MISP/app/files/misp-galaxy/schema_galaxies.json
 jsonfile=bdm_it.json
 convertfile=convert.awk
 
@@ -23,6 +25,12 @@ which wget >/dev/null  || perror "wget absent"
 which jq >/dev/null 
 if [ $? -eq 0 ] ; then 
 	check=1
+	which jsonschema >/dev/null
+	if [ $? -eq 0 ] ; then 
+		test -f $galaxieschema && test -f $clusterschema && check=2
+	else
+		echo jsonschema absent les fichiers json ne pourront pas etre valides completement >&2
+	fi
 else
 	check=0
 	echo jq absent les fichiers json ne pourront pas etre valides >&2
@@ -50,8 +58,20 @@ if [ $? -eq 0 ] ; then
 	if [ $check -eq 1 ] ; then 
 		jq -e . $clusterdir/$jsonfile >/dev/null 2>&1
 		if [ $? -eq 0 ] ; then 
-			echo fichier $clusterdir/$jsonfile genere
-			rm $clusterdir/$jsonfile.sav
+			if [ $check -eq 2 ] ; then 
+				jsonschema $clusterschema -i $clusterdir/$jsonfile
+				if [ $? -eq 0 ] ; then
+					echo fichier $clusterdir/$jsonfile genere
+					rm $clusterdir/$jsonfile.sav
+				else
+					echo le fichier genere n ete pas valide je remet l ancienne version
+					rm $clusterdir/$jsonfile
+					mv $clusterdir/$jsonfile.sav $clusterdir/$jsonfile
+				fi
+			else
+				echo fichier $clusterdir/$jsonfile genere
+				rm $clusterdir/$jsonfile.sav
+			fi
 		else
 			echo le fichier genere n ete pas valide je remet l ancienne version
 			rm $clusterdir/$jsonfile
@@ -82,8 +102,20 @@ if [ $? -eq 0 ] ; then
 	if [ $check -eq 1 ] ; then 
 		jq -e . $galaxiedir/$jsonfile >/dev/null 2>&1
 		if [ $? -eq 0 ] ; then 
-			echo fichier $galaxiedir/$jsonfile genere
-			rm $galaxiedir/$jsonfile.sav
+			if [ $check -eq 2 ] ; then 
+				jsonschema $galaxieschema -i $galaxiedir/$jsonfile
+				if [ $? -eq 0 ] ; then
+					echo fichier $galaxiedir/$jsonfile genere
+					rm $galaxiedir/$jsonfile.sav
+				else
+					echo le fichier genere n ete pas valide je remet l ancienne version
+					rm $galaxiedir/$jsonfile
+					mv $galaxiedir/$jsonfile.sav $galaxiedir/$jsonfile
+				fi
+			else
+				echo fichier $galaxiedir/$jsonfile genere
+				rm $galaxiedir/$jsonfile.sav
+			fi
 		else
 			echo le fichier genere n ete pas valide je remet l ancienne version
 			rm $galaxiedir/$jsonfile
