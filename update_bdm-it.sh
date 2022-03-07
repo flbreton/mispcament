@@ -49,16 +49,17 @@ fi
 version=`echo $dbfile | cut -d_ -f3 | sed 's/^0*//'`
 
 # conversion du fichier dbf en json pour le cluster
-if [ $check -eq 1 ] ; then 
+if [ $check -ge 1 ] ; then 
 	mv $clusterdir/$jsonfile $clusterdir/$jsonfile.sav
 fi
 
 dbview -b $dbfile | cut -d: -f1,7,3,11,38,39| sed 's/   *//g'|sort |uniq | iconv -f CP850 -t UTF8 | awk -v vers=$version -f $convertfile > $clusterdir/$jsonfile
 if [ $? -eq 0 ] ; then 
-	if [ $check -eq 1 ] ; then 
+	if [ $check -ge 1 ] ; then 
 		jq -e . $clusterdir/$jsonfile >/dev/null 2>&1
 		if [ $? -eq 0 ] ; then 
 			if [ $check -eq 2 ] ; then 
+				echo analyse du schema...
 				jsonschema $clusterschema -i $clusterdir/$jsonfile
 				if [ $? -eq 0 ] ; then
 					echo fichier $clusterdir/$jsonfile genere
@@ -86,7 +87,7 @@ else
 fi
 
 # generation du fichier galaxie
-if [ $check -eq 1 ] ; then 
+if [ $check -ge 1 ] ; then 
 	mv $galaxiedir/$jsonfile $galaxiedir/$jsonfile.sav
 fi
 echo '{
@@ -99,10 +100,11 @@ echo '{
   "version": 1
 }'>$galaxiedir/$jsonfile
 if [ $? -eq 0 ] ; then 
-	if [ $check -eq 1 ] ; then 
+	if [ $check -ge 1 ] ; then 
 		jq -e . $galaxiedir/$jsonfile >/dev/null 2>&1
 		if [ $? -eq 0 ] ; then 
 			if [ $check -eq 2 ] ; then 
+				echo analyse du schema...
 				jsonschema $galaxieschema -i $galaxiedir/$jsonfile
 				if [ $? -eq 0 ] ; then
 					echo fichier $galaxiedir/$jsonfile genere
